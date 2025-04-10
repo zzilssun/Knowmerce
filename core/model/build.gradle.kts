@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "com.sample.knowmerce.core.network"
+    namespace = "com.sample.knowmerce.core.model"
     compileSdk = 35
 
     defaultConfig {
@@ -32,30 +30,12 @@ android {
     kotlinOptions {
         jvmTarget = "21"
     }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
-    flavorDimensions += "environment"
-    productFlavors {
-        create("sample") {
-            dimension = "environment"
-
-            buildConfigField("String", "KAKO_BASE_URL", "\"https://dapi.kakao.com\"")
-        }
-    }
 }
 
 dependencies {
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-    // hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    // Retrofit
-    implementation(libs.okhttp3)
-    implementation(libs.bundles.retrofit)
+    // Gson
+    implementation(libs.gson)
 }

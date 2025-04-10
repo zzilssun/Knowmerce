@@ -1,23 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "com.sample.knowmerce"
+    namespace = "com.sample.knowmerce.core.network"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.sample.knowmerce"
         minSdk = 23
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,40 +29,22 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         buildConfig = true
-        compose = true
     }
 
     flavorDimensions += "environment"
     productFlavors {
         create("sample") {
             dimension = "environment"
+
+            buildConfigField("String", "KAKO_BASE_URL", "\"https://dapi.kakao.com\"")
         }
     }
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // Room
-    implementation(libs.bundles.androidx.room)
-    ksp(libs.androidx.room.compiler)
-
-    // Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.androidx.compose)
-
-    // Coil
-    implementation(platform(libs.coil.bom))
-    implementation(libs.bundles.coil)
-
     // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
@@ -74,7 +52,4 @@ dependencies {
     // Retrofit
     implementation(libs.okhttp3)
     implementation(libs.bundles.retrofit)
-
-    // Gson
-    implementation(libs.gson)
 }

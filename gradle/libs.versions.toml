@@ -28,6 +28,8 @@ retrofit-version = "2.11.0"
 
 # Util
 gson = "2.11.0"
+appcompat = "1.7.0"
+material = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -71,12 +73,12 @@ hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-comp
 # Retrofit
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3-version" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit-version" }
-retrofit-adapter-rx = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit-version" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit-version" }
-retrofit-converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit-version" }
 
 # Util
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 androidx-room = [
@@ -106,9 +108,7 @@ coil = [
 ]
 retrofit = [
     "retrofit",
-    "retrofit-adapter-rx",
     "retrofit-converter-gson",
-    "retrofit-converter-scalars"
 ]
 
 [plugins]
@@ -117,4 +117,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-version" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

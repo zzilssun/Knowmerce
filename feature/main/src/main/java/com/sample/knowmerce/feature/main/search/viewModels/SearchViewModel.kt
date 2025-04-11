@@ -79,6 +79,7 @@ class SearchViewModel @Inject constructor(
                     when (item) {
                         is SearchViewData.Image -> {
                             ArchiveEntity(
+                                contentHashCode = item.hashCode(),
                                 type = "image",
                                 content = Gson().toJson(item),
                             )
@@ -86,6 +87,7 @@ class SearchViewModel @Inject constructor(
 
                         is SearchViewData.Video -> {
                             ArchiveEntity(
+                                contentHashCode = item.hashCode(),
                                 type = "video",
                                 content = Gson().toJson(item),
                             )

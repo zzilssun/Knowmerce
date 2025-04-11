@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ArchiveEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    @PrimaryKey
+    val contentHashCode: Int,
 
     @ColumnInfo
     val type: String,

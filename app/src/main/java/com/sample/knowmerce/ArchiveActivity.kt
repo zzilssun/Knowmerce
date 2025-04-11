@@ -17,7 +17,9 @@ class ArchiveActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            ArchiveScreen()
+            ArchiveScreen(
+                onFinish = ::finish,
+            )
         }
     }
 

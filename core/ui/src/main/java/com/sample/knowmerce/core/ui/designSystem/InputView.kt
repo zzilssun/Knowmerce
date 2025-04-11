@@ -85,7 +85,7 @@ fun InputView(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.primary,
                             shape = RoundedCornerShape(12.dp),
                         )
                         .padding(

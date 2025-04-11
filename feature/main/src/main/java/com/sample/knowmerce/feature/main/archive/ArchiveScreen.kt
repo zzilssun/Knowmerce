@@ -13,6 +13,7 @@ import com.sample.knowmerce.feature.main.archive.views.ArchiveContentView
 fun ArchiveScreen(
     modifier: Modifier = Modifier,
     archiveViewModel: ArchiveViewModel = viewModel(),
+    onFinish: () -> Unit,
 ) {
     val items = archiveViewModel.pager.collectAsLazyPagingItems()
 
@@ -21,5 +22,6 @@ fun ArchiveScreen(
             .statusBarsPadding()
             .navigationBarsPadding(),
         items = items,
+        onFinish = onFinish,
     )
 }

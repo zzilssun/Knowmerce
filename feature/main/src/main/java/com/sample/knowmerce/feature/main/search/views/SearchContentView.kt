@@ -13,14 +13,13 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddBox
+import androidx.compose.material.icons.filled.AllInbox
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,9 +36,9 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.sample.knowmerce.core.ui.designSystem.InputView
-import com.sample.knowmerce.core.ui.designSystem.theme.KnowMerceTheme
 import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
+import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
 import com.sample.knowmerce.feature.main.card.KakaoImageCardView
 import com.sample.knowmerce.feature.main.card.KakoVideoCardView
 import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
@@ -57,57 +56,56 @@ internal fun SearchContentView(
 ) {
     var keyword by remember { mutableStateOf("") }
 
-    KnowMerceTheme {
-        Scaffold(
-            modifier = modifier
-                .fillMaxSize(),
-            topBar = {
-                Column {
-                    SearchBar(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        keyword = keyword,
-                        onChangeValue = {
-                            keyword = it
-                        },
-                        onClickSearch = {
-                            onClickSearch(keyword)
-                        },
-                    )
+    KnowMerceScaffold(
+        modifier = modifier,
+        topBar = {
+            Column {
+                SearchBar(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    keyword = keyword,
+                    onChangeValue = {
+                        keyword = it
+                    },
+                    onClickSearch = {
+                        onClickSearch(keyword)
+                    },
+                )
 
-                    HorizontalDivider()
-                }
-            },
-            floatingActionButton = {
-                FloatingActionButton(
-                    onClick = onClickFab,
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.AddBox,
-                        contentDescription = "아카이빙 페이지 이동",
-                    )
-                }
-            },
-        ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                HorizontalDivider(
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onClickFab,
             ) {
-                if (isInit) {
-                    Text(
-                        modifier = Modifier
-                            .align(Alignment.Center),
-                        text = "카카오 검색 시스템에 오신 것을 환영합니다.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                } else {
-                    ContentsView(
-                        items = items,
-                        onClickArchive = onClickArchive,
-                    )
-                }
+                Icon(
+                    imageVector = Icons.Filled.AllInbox,
+                    contentDescription = "아카이빙 페이지 이동",
+                )
+            }
+        },
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        ) {
+            if (isInit) {
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.Center),
+                    text = "카카오 검색 시스템에 오신 것을 환영합니다.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            } else {
+                ContentsView(
+                    items = items,
+                    onClickArchive = onClickArchive,
+                )
             }
         }
     }

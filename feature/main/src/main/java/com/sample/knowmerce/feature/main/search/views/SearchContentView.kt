@@ -40,7 +40,7 @@ import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
 import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
 import com.sample.knowmerce.feature.main.card.KakaoImageCardView
-import com.sample.knowmerce.feature.main.card.KakoVideoCardView
+import com.sample.knowmerce.feature.main.card.KakaoVideoCardView
 import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataImages
 import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataVideos
@@ -51,8 +51,9 @@ internal fun SearchContentView(
     isInit: Boolean,
     items: LazyPagingItems<KakoSearchViewData>,
     onClickSearch: (keyword: String) -> Unit,
-    onClickArchive: (item: KakoSearchViewData) -> Unit,
     onClickFab: () -> Unit,
+    onClickArchive: (item: KakoSearchViewData) -> Unit,
+    onClickContent: (link: String) -> Unit,
 ) {
     var keyword by remember { mutableStateOf("") }
 
@@ -105,6 +106,7 @@ internal fun SearchContentView(
                 ContentsView(
                     items = items,
                     onClickArchive = onClickArchive,
+                    onClickContent = onClickContent,
                 )
             }
         }
@@ -168,6 +170,7 @@ private fun ContentsView(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<KakoSearchViewData>,
     onClickArchive: (item: KakoSearchViewData) -> Unit,
+    onClickContent: (link: String) -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -212,14 +215,20 @@ private fun ContentsView(
                                     onClickArchive = {
                                         onClickArchive(item)
                                     },
+                                    onClickContent = {
+                                        onClickContent(item.link)
+                                    },
                                 )
                             }
 
                             is KakoSearchViewData.Video -> {
-                                KakoVideoCardView(
+                                KakaoVideoCardView(
                                     video = item,
                                     onClickArchive = {
                                         onClickArchive(item)
+                                    },
+                                    onClickContent = {
+                                        onClickContent(item.link)
                                     },
                                 )
                             }
@@ -240,6 +249,7 @@ private fun PreviewSearchContentView_init() {
             items = mockingLazyPagingItems(listOf()),
             onClickSearch = {},
             onClickArchive = {},
+            onClickContent = {},
             onClickFab = {},
         )
     }
@@ -256,6 +266,7 @@ private fun PreviewSearchContentView() {
             ),
             onClickSearch = {},
             onClickArchive = {},
+            onClickContent = {},
             onClickFab = {},
         )
     }

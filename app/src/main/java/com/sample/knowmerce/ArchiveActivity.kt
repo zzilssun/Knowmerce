@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.core.net.toUri
 import com.sample.knowmerce.feature.main.archive.ArchiveScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,11 @@ class ArchiveActivity : ComponentActivity() {
         setContent {
             ArchiveScreen(
                 onFinish = ::finish,
+                onClickContent = { link ->
+                    runCatching {
+                        startActivity(Intent(Intent.ACTION_VIEW, link.toUri()))
+                    }
+                },
             )
         }
     }

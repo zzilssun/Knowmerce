@@ -14,6 +14,7 @@ fun ArchiveScreen(
     modifier: Modifier = Modifier,
     archiveViewModel: ArchiveViewModel = viewModel(),
     onFinish: () -> Unit,
+    onClickContent: (link: String) -> Unit,
 ) {
     val items = archiveViewModel.pager.collectAsLazyPagingItems()
 
@@ -23,5 +24,6 @@ fun ArchiveScreen(
             .navigationBarsPadding(),
         items = items,
         onFinish = onFinish,
+        onClickContent = onClickContent,
     )
 }

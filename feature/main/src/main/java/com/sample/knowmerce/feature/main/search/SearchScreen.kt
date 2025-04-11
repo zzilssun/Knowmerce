@@ -19,6 +19,7 @@ fun SearchScreen(
     searchViewModel: SearchViewModel = viewModel(),
     handleToast: (message: String) -> Unit,
     onClickFab: () -> Unit,
+    onClickContent: (link: String) -> Unit,
 ) {
     val isInit by searchViewModel.isInit.collectAsState()
     val pager by searchViewModel.pager.collectAsState()
@@ -41,9 +42,10 @@ fun SearchScreen(
         onClickSearch = { keyword ->
             searchViewModel.setKeyword(keyword)
         },
+        onClickFab = onClickFab,
         onClickArchive = { item ->
             searchViewModel.insertArchive(item)
         },
-        onClickFab = onClickFab,
+        onClickContent = onClickContent,
     )
 }

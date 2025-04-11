@@ -29,7 +29,7 @@ import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
 import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
 import com.sample.knowmerce.feature.main.card.KakaoImageCardView
-import com.sample.knowmerce.feature.main.card.KakoVideoCardView
+import com.sample.knowmerce.feature.main.card.KakaoVideoCardView
 import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataImages
 import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataVideos
@@ -40,6 +40,7 @@ internal fun ArchiveContentView(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<KakoSearchViewData>,
     onFinish: () -> Unit,
+    onClickContent: (link: String) -> Unit,
 ) {
     KnowMerceScaffold(
         modifier = modifier,
@@ -115,12 +116,18 @@ internal fun ArchiveContentView(
                                 is KakoSearchViewData.Image -> {
                                     KakaoImageCardView(
                                         image = item,
+                                        onClickContent = {
+                                            onClickContent(item.link)
+                                        },
                                     )
                                 }
 
                                 is KakoSearchViewData.Video -> {
-                                    KakoVideoCardView(
+                                    KakaoVideoCardView(
                                         video = item,
+                                        onClickContent = {
+                                            onClickContent(item.link)
+                                        },
                                     )
                                 }
                             }
@@ -141,6 +148,7 @@ private fun PreviewArchiveContentView() {
                 sampleKakaoSearchViewDataImages + sampleKakaoSearchViewDataVideos
             ),
             onFinish = {},
+            onClickContent = {},
         )
     }
 }

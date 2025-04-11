@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataImages
 import java.util.Locale
@@ -28,10 +29,15 @@ internal fun KakaoImageCardView(
     modifier: Modifier = Modifier,
     image: KakoSearchViewData.Image,
     onClickArchive: (() -> Unit)? = null,
+    onClickContent: () -> Unit,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .rippleClickable(
+                radius = 12.dp,
+                onClick = onClickContent,
+            )
             .padding(
                 all = 8.dp,
             ),
@@ -99,7 +105,7 @@ private fun PreviewSearchImageCardView() {
     Surface {
         KakaoImageCardView(
             image = sampleKakaoSearchViewDataImages.first(),
-            onClickArchive = {},
+            onClickContent = {},
         )
     }
 }

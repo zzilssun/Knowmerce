@@ -19,12 +19,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.sample.knowmerce.core.ui.extensions.DevicePosture
+import com.sample.knowmerce.core.ui.extensions.rememberDevicePosture
 import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
 import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
@@ -42,6 +48,16 @@ internal fun ArchiveContentView(
     onFinish: () -> Unit,
     onClickContent: (link: String) -> Unit,
 ) {
+    val devicePosture = rememberDevicePosture()
+    val spanCount by remember(devicePosture) {
+        mutableIntStateOf(
+            when (devicePosture) {
+                DevicePosture.Flat -> 4
+                else -> 2
+            }
+        )
+    }
+
     KnowMerceScaffold(
         modifier = modifier,
         topBar = {
@@ -99,7 +115,7 @@ internal fun ArchiveContentView(
                     LazyVerticalGrid(
                         modifier = Modifier
                             .fillMaxSize(),
-                        columns = GridCells.Fixed(2),
+                        columns = GridCells.Fixed(spanCount),
                         contentPadding = PaddingValues(
                             all = 8.dp,
                         ),
@@ -142,6 +158,20 @@ internal fun ArchiveContentView(
 @Preview
 @Composable
 private fun PreviewArchiveContentView() {
+    Surface {
+        ArchiveContentView(
+            items = mockingLazyPagingItems(
+                sampleKakaoSearchViewDataImages + sampleKakaoSearchViewDataVideos
+            ),
+            onFinish = {},
+            onClickContent = {},
+        )
+    }
+}
+
+@Preview(device = Devices.PIXEL_FOLD)
+@Composable
+private fun PreviewArchiveContentView_flat() {
     Surface {
         ArchiveContentView(
             items = mockingLazyPagingItems(

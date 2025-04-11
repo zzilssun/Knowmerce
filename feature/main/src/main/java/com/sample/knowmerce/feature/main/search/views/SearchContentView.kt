@@ -24,6 +24,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -31,11 +32,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.sample.knowmerce.core.ui.designSystem.InputView
+import com.sample.knowmerce.core.ui.extensions.DevicePosture
+import com.sample.knowmerce.core.ui.extensions.rememberDevicePosture
 import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
 import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
@@ -172,6 +176,16 @@ private fun ContentsView(
     onClickArchive: (item: KakoSearchViewData) -> Unit,
     onClickContent: (link: String) -> Unit,
 ) {
+    val devicePosture = rememberDevicePosture()
+    val spanCount by remember(devicePosture) {
+        mutableIntStateOf(
+            when (devicePosture) {
+                DevicePosture.Flat -> 4
+                else -> 2
+            }
+        )
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize(),
@@ -195,7 +209,7 @@ private fun ContentsView(
                 LazyVerticalGrid(
                     modifier = Modifier
                         .fillMaxSize(),
-                    columns = GridCells.Fixed(2),
+                    columns = GridCells.Fixed(spanCount),
                     contentPadding = PaddingValues(
                         all = 8.dp,
                     ),
@@ -258,6 +272,23 @@ private fun PreviewSearchContentView_init() {
 @Preview
 @Composable
 private fun PreviewSearchContentView() {
+    Surface {
+        SearchContentView(
+            isInit = false,
+            items = mockingLazyPagingItems(
+                sampleKakaoSearchViewDataImages + sampleKakaoSearchViewDataVideos
+            ),
+            onClickSearch = {},
+            onClickArchive = {},
+            onClickContent = {},
+            onClickFab = {},
+        )
+    }
+}
+
+@Preview(device = Devices.PIXEL_FOLD)
+@Composable
+private fun PreviewSearchContentView_flat() {
     Surface {
         SearchContentView(
             isInit = false,

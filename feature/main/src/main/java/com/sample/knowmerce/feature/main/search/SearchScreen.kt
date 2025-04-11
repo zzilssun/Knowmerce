@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.sample.knowmerce.core.ui.extensions.rememberDevicePosture
 import com.sample.knowmerce.feature.main.search.viewModels.SearchViewModel
 import com.sample.knowmerce.feature.main.search.views.SearchContentView
 import kotlinx.coroutines.launch

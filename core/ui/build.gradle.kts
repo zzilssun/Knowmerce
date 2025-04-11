@@ -47,6 +47,7 @@ dependencies {
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.androidx.compose)
+    implementation(libs.androidx.window)
 
     // Coil
     implementation(platform(libs.coil.bom))

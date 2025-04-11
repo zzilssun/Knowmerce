@@ -43,6 +43,7 @@ android {
             dimension = "environment"
 
             buildConfigField("String", "KAKO_BASE_URL", "\"https://dapi.kakao.com\"")
+            buildConfigField("String", "KAKAO_AUTH", "\"KakaoAK 16e7e516049ae6ddca32e7fa4b628a01\"")
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.sample.knowmerce.feature.main.search
 
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -9,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.sample.knowmerce.core.ui.extensions.rememberDevicePosture
 import com.sample.knowmerce.feature.main.search.viewModels.SearchViewModel
 import com.sample.knowmerce.feature.main.search.views.SearchContentView
 import kotlinx.coroutines.launch
@@ -35,9 +32,7 @@ fun SearchScreen(
     }
 
     SearchContentView(
-        modifier = modifier
-            .statusBarsPadding()
-            .navigationBarsPadding(),
+        modifier = modifier,
         isInit = isInit,
         items = items,
         onClickSearch = { keyword ->

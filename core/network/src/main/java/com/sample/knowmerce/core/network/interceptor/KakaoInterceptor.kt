@@ -1,5 +1,6 @@
 package com.sample.knowmerce.core.network.interceptor
 
+import com.sample.knowmerce.core.network.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -7,7 +8,7 @@ class KakaoInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val newRequest = chain.request().newBuilder()
-            .header(HEADER_AUTHORIZATION, "KakaoAK 16e7e516049ae6ddca32e7fa4b628a01")
+            .header(HEADER_AUTHORIZATION, BuildConfig.KAKAO_AUTH)
             .build()
         return chain.proceed(newRequest)
     }

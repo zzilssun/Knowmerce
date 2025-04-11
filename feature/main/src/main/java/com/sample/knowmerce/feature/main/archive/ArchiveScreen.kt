@@ -1,7 +1,5 @@
 package com.sample.knowmerce.feature.main.archive
 
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,9 +17,7 @@ fun ArchiveScreen(
     val items = archiveViewModel.pager.collectAsLazyPagingItems()
 
     ArchiveContentView(
-        modifier = modifier
-            .statusBarsPadding()
-            .navigationBarsPadding(),
+        modifier = modifier,
         items = items,
         onFinish = onFinish,
         onClickContent = onClickContent,

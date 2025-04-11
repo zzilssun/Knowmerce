@@ -1,6 +1,5 @@
-package com.sample.knowmerce.ui.theme
+package com.sample.knowmerce.core.ui.designSystem.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

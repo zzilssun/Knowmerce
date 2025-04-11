@@ -50,8 +50,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(project(":feature:main"))
+
     implementation(libs.androidx.activity.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -59,6 +59,8 @@ dependencies {
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    implementation(libs.androidx.multidex)
 
     // Room
     implementation(libs.bundles.androidx.room)

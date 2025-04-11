@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class MetaDTO(
     @SerializedName("is_end")
-    val isEnd: Boolean,
+    val isEnd: Boolean = false,
     @SerializedName("pageable_count")
-    val pageableCount: Int,
+    val pageableCount: Int = 0,
     @SerializedName("total_count")
-    val totalCount: Int,
+    val totalCount: Int = 0,
 )

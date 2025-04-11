@@ -1,4 +1,4 @@
-package com.sample.knowmerce.ui.theme
+package com.sample.knowmerce.core.ui.designSystem.theme
 
 import androidx.compose.ui.graphics.Color
 

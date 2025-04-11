@@ -3,7 +3,8 @@ package com.sample.knowmerce.core.data.api
 import androidx.annotation.IntRange
 import com.sample.knowmerce.core.data.constants.KakaoAPIConstants
 import com.sample.knowmerce.core.data.constants.SearchConstants
-import com.sample.knowmerce.core.model.response.SearchVideoResponse
+import com.sample.knowmerce.core.model.dto.SearchImageAndVideoDTO
+import com.sample.knowmerce.core.model.kakao.KakaoSearchResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,13 +19,13 @@ interface KakaoAPIService {
      * @param page 결과 페이지 번호, 1~50 사이의 값, 기본 값 1
      * @param size 한 페이지에 보여질 문서 수, 1~80 사이의 값, 기본 값 80
      */
-    @GET(KakaoAPIConstants.API_VCLIP)
+    @GET(KakaoAPIConstants.API_IMAGE)
     suspend fun requestSearchImages(
         @Query("query") query: String,
-        @Query("sort") sort: String = SearchConstants.SORT_ACCURACY,
+        @Query("sort") sort: String = SearchConstants.SORT_RECENCY,
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("size") @IntRange(from = 1, to = 80) size: Int = 80,
-    ): SearchVideoResponse
+    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Image>
 
     /**
      * 카카오 동영상 검색
@@ -38,8 +39,8 @@ interface KakaoAPIService {
     @GET(KakaoAPIConstants.API_VCLIP)
     suspend fun requestSearchVideos(
         @Query("query") query: String,
-        @Query("sort") sort: String = SearchConstants.SORT_ACCURACY,
+        @Query("sort") sort: String = SearchConstants.SORT_RECENCY,
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("size") @IntRange(from = 1, to = 30) size: Int = 15,
-    ): SearchVideoResponse
+    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Video>
 }

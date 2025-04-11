@@ -13,27 +13,31 @@ class KnowMerceDatabaseRepository(
         .databaseBuilder(
             context = context,
             klass = KnowMerceDatabase::class.java,
-            name = null,
+            name = "KnowMerceDatabaseRepository",
         )
         .build()
 
     /**
-     * 저장된 10개의 최근 방문한 여행지 항목 가져오기
+     * 아카이빙 된 컨텐츠 가져오기
      */
     suspend fun requestArchives(
         @IntRange(from = 0) page: Int,
         size: Int = 30,
     ): List<ArchiveEntity> {
-        if (page < 1 || size <= 0) {
-            return emptyList()
-        }
-        val offset = (page - 1) * size
-
         return database
             .getArchiveDao()
             .requestArchives(
                 limit = size,
-                offset = offset,
+                offset = page,
             )
+    }
+
+    /**
+     * 컨텐츠 아카이빙 하기
+     */
+    suspend fun insertArchive(archive: ArchiveEntity) {
+        database
+            .getArchiveDao()
+            .insertArchive(archive)
     }
 }

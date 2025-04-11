@@ -21,6 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "KnowMerce"
 include(":app")
-include(":core:network")
-include(":core:model")
 include(":core:data")
+include(":core:model")
+include(":core:network")
+include(":core:ui")
+include(":feature:main")

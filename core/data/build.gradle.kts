@@ -23,17 +23,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+
+        // Desugaring 활성화
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 }
 
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:network"))
+
+    // desugar
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     // hilt
     implementation(libs.hilt.android)

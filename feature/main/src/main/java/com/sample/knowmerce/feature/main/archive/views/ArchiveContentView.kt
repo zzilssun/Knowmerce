@@ -21,15 +21,15 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.sample.knowmerce.core.ui.designSystem.theme.KnowMerceTheme
-import com.sample.knowmerce.feature.main.card.SearchImageCardView
-import com.sample.knowmerce.feature.main.card.SearchVideoCardView
-import com.sample.knowmerce.feature.main.card.models.SearchViewData
+import com.sample.knowmerce.feature.main.card.KakaoImageCardView
+import com.sample.knowmerce.feature.main.card.KakoVideoCardView
+import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ArchiveContentView(
     modifier: Modifier = Modifier,
-    items: LazyPagingItems<SearchViewData>,
+    items: LazyPagingItems<KakoSearchViewData>,
 ) {
     KnowMerceTheme {
         Scaffold(
@@ -88,14 +88,14 @@ internal fun ArchiveContentView(
                                 val item = items[index] ?: return@items
 
                                 when (item) {
-                                    is SearchViewData.Image -> {
-                                        SearchImageCardView(
+                                    is KakoSearchViewData.Image -> {
+                                        KakaoImageCardView(
                                             image = item,
                                         )
                                     }
 
-                                    is SearchViewData.Video -> {
-                                        SearchVideoCardView(
+                                    is KakoSearchViewData.Video -> {
+                                        KakoVideoCardView(
                                             video = item,
                                         )
                                     }

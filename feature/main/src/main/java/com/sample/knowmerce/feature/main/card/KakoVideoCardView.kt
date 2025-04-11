@@ -19,13 +19,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.sample.knowmerce.feature.main.card.models.SearchViewData
-import com.sample.knowmerce.feature.main.card.models.sampleSearchViewDataVideos
+import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
+import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataVideos
 
 @Composable
-internal fun SearchVideoCardView(
+internal fun KakoVideoCardView(
     modifier: Modifier = Modifier,
-    video: SearchViewData.Video,
+    video: KakoSearchViewData.Video,
     onClickArchive: (() -> Unit)? = null,
 ) {
     Box(
@@ -100,8 +100,8 @@ internal fun SearchVideoCardView(
 @Composable
 private fun PreviewSearchVideoCardView() {
     Surface {
-        SearchVideoCardView(
-            video = sampleSearchViewDataVideos.first(),
+        KakoVideoCardView(
+            video = sampleKakaoSearchViewDataVideos.first(),
             onClickArchive = {},
         )
     }

@@ -1,16 +1,16 @@
 package com.sample.knowmerce.feature.main.search.paging
 
 import com.sample.knowmerce.core.data.repository.KakaoRepository
-import com.sample.knowmerce.core.model.dto.SearchImageAndVideoDTO
+import com.sample.knowmerce.core.model.dto.kakao.KakaoSearchImageAndVideoDTO
 import com.sample.knowmerce.core.ui.paging.BasePagingSource
-import com.sample.knowmerce.feature.main.card.models.SearchViewData
+import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 
 internal class SearchImageAndVideoPagingSource(
     private val kakaoRepository: KakaoRepository,
     private val keyword: String,
-) : BasePagingSource<SearchViewData>() {
+) : BasePagingSource<KakoSearchViewData>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SearchViewData> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, KakoSearchViewData> {
         return handlePageLoadMore(
             params = params,
             responseFactory = { page, loadSize ->
@@ -25,8 +25,8 @@ internal class SearchImageAndVideoPagingSource(
                     loadMore = !response.isEnd,
                     items = response.documents.map { content ->
                         when (content) {
-                            is SearchImageAndVideoDTO.Image -> {
-                                SearchViewData.Image(
+                            is KakaoSearchImageAndVideoDTO.Image -> {
+                                KakoSearchViewData.Image(
                                     thumbnail = content.thumbnailUrl,
                                     collection = content.collection,
                                     siteName = content.displaySiteName,
@@ -34,8 +34,8 @@ internal class SearchImageAndVideoPagingSource(
                                 )
                             }
 
-                            is SearchImageAndVideoDTO.Video -> {
-                                SearchViewData.Video(
+                            is KakaoSearchImageAndVideoDTO.Video -> {
+                                KakoSearchViewData.Video(
                                     thumbnail = content.thumbnail,
                                     author = content.author,
                                     title = content.title,

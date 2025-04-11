@@ -3,8 +3,8 @@ package com.sample.knowmerce.core.data.api
 import androidx.annotation.IntRange
 import com.sample.knowmerce.core.data.constants.KakaoAPIConstants
 import com.sample.knowmerce.core.data.constants.SearchConstants
-import com.sample.knowmerce.core.model.dto.SearchImageAndVideoDTO
-import com.sample.knowmerce.core.model.kakao.KakaoSearchResponseDTO
+import com.sample.knowmerce.core.model.dto.kakao.KakaoSearchImageAndVideoDTO
+import com.sample.knowmerce.core.model.kakao.KakaoSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -25,7 +25,7 @@ interface KakaoAPIService {
         @Query("sort") sort: String = SearchConstants.SORT_RECENCY,
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("size") @IntRange(from = 1, to = 80) size: Int = 80,
-    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Image>
+    ): KakaoSearchResponse<KakaoSearchImageAndVideoDTO.Image>
 
     /**
      * 카카오 동영상 검색
@@ -42,5 +42,5 @@ interface KakaoAPIService {
         @Query("sort") sort: String = SearchConstants.SORT_RECENCY,
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("size") @IntRange(from = 1, to = 30) size: Int = 15,
-    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Video>
+    ): KakaoSearchResponse<KakaoSearchImageAndVideoDTO.Video>
 }

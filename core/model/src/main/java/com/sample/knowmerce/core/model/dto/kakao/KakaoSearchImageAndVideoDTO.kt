@@ -1,9 +1,9 @@
-package com.sample.knowmerce.core.model.dto
+package com.sample.knowmerce.core.model.dto.kakao
 
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDateTime
 
-sealed class SearchImageAndVideoDTO {
+sealed class KakaoSearchImageAndVideoDTO {
     abstract fun getDateTime(): LocalDateTime?
 
     /**
@@ -29,7 +29,7 @@ sealed class SearchImageAndVideoDTO {
         val thumbnailUrl: String = "",
         val width: Int = 0,
         val height: Int = 0,
-    ) : SearchImageAndVideoDTO() {
+    ) : KakaoSearchImageAndVideoDTO() {
         override fun getDateTime(): LocalDateTime? {
             return datetime
         }
@@ -51,7 +51,7 @@ sealed class SearchImageAndVideoDTO {
         val thumbnail: String = "",
         val title: String = "",
         val url: String = "",
-    ) : SearchImageAndVideoDTO() {
+    ) : KakaoSearchImageAndVideoDTO() {
         override fun getDateTime(): LocalDateTime? {
             return datetime
         }

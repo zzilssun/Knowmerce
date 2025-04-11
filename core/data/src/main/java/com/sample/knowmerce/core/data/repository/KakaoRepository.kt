@@ -2,9 +2,9 @@ package com.sample.knowmerce.core.data.repository
 
 import androidx.annotation.IntRange
 import com.sample.knowmerce.core.data.api.KakaoAPIService
-import com.sample.knowmerce.core.model.dto.SearchImageAndVideoDTO
-import com.sample.knowmerce.core.model.kakao.KakaoSearchResponseDTO
-import com.sample.knowmerce.core.model.response.SearchImageAndVideoResponse
+import com.sample.knowmerce.core.model.dto.kakao.KakaoSearchImageAndVideoDTO
+import com.sample.knowmerce.core.model.kakao.KakaoSearchResponse
+import com.sample.knowmerce.core.model.response.KakaoSearchImageAndVideoResponse
 import javax.inject.Inject
 
 class KakaoRepository @Inject constructor(
@@ -14,7 +14,7 @@ class KakaoRepository @Inject constructor(
         query: String,
         @IntRange(from = 1) page: Int = 1,
         @IntRange(from = 1, to = 30) size: Int,
-    ): SearchImageAndVideoResponse {
+    ): KakaoSearchImageAndVideoResponse {
         val images = requestSearchImages(
             query = query,
             page = page,
@@ -27,7 +27,7 @@ class KakaoRepository @Inject constructor(
             size = size,
         )
 
-        return SearchImageAndVideoResponse(
+        return KakaoSearchImageAndVideoResponse(
             isEnd = images.meta.isEnd && videos.meta.isEnd,
             documents = (images.documents + videos.documents).sortedByDescending {
                 it.getDateTime()
@@ -47,7 +47,7 @@ class KakaoRepository @Inject constructor(
         query: String,
         @IntRange(from = 1) page: Int = 1,
         @IntRange(from = 1, to = 80) size: Int,
-    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Image> {
+    ): KakaoSearchResponse<KakaoSearchImageAndVideoDTO.Image> {
         return service.requestSearchImages(
             query = query,
             page = page,
@@ -67,7 +67,7 @@ class KakaoRepository @Inject constructor(
         query: String,
         @IntRange(from = 1) page: Int = 1,
         @IntRange(from = 1, to = 30) size: Int,
-    ): KakaoSearchResponseDTO<SearchImageAndVideoDTO.Video> {
+    ): KakaoSearchResponse<KakaoSearchImageAndVideoDTO.Video> {
         return service.requestSearchVideos(
             query = query,
             page = page,

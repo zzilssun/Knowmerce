@@ -40,19 +40,19 @@ import com.sample.knowmerce.core.ui.designSystem.InputView
 import com.sample.knowmerce.core.ui.designSystem.theme.KnowMerceTheme
 import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
-import com.sample.knowmerce.feature.main.card.SearchImageCardView
-import com.sample.knowmerce.feature.main.card.SearchVideoCardView
-import com.sample.knowmerce.feature.main.card.models.SearchViewData
-import com.sample.knowmerce.feature.main.card.models.sampleSearchViewDataImages
-import com.sample.knowmerce.feature.main.card.models.sampleSearchViewDataVideos
+import com.sample.knowmerce.feature.main.card.KakaoImageCardView
+import com.sample.knowmerce.feature.main.card.KakoVideoCardView
+import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
+import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataImages
+import com.sample.knowmerce.feature.main.card.models.sampleKakaoSearchViewDataVideos
 
 @Composable
 internal fun SearchContentView(
     modifier: Modifier = Modifier,
     isInit: Boolean,
-    items: LazyPagingItems<SearchViewData>,
+    items: LazyPagingItems<KakoSearchViewData>,
     onClickSearch: (keyword: String) -> Unit,
-    onClickArchive: (item: SearchViewData) -> Unit,
+    onClickArchive: (item: KakoSearchViewData) -> Unit,
     onClickFab: () -> Unit,
 ) {
     var keyword by remember { mutableStateOf("") }
@@ -168,8 +168,8 @@ private fun SearchBar(
 @Composable
 private fun ContentsView(
     modifier: Modifier = Modifier,
-    items: LazyPagingItems<SearchViewData>,
-    onClickArchive: (item: SearchViewData) -> Unit,
+    items: LazyPagingItems<KakoSearchViewData>,
+    onClickArchive: (item: KakoSearchViewData) -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -208,8 +208,8 @@ private fun ContentsView(
                         val item = items[index] ?: return@items
 
                         when (item) {
-                            is SearchViewData.Image -> {
-                                SearchImageCardView(
+                            is KakoSearchViewData.Image -> {
+                                KakaoImageCardView(
                                     image = item,
                                     onClickArchive = {
                                         onClickArchive(item)
@@ -217,8 +217,8 @@ private fun ContentsView(
                                 )
                             }
 
-                            is SearchViewData.Video -> {
-                                SearchVideoCardView(
+                            is KakoSearchViewData.Video -> {
+                                KakoVideoCardView(
                                     video = item,
                                     onClickArchive = {
                                         onClickArchive(item)
@@ -254,7 +254,7 @@ private fun PreviewSearchContentView() {
         SearchContentView(
             isInit = false,
             items = mockingLazyPagingItems(
-                sampleSearchViewDataImages + sampleSearchViewDataVideos
+                sampleKakaoSearchViewDataImages + sampleKakaoSearchViewDataVideos
             ),
             onClickSearch = {},
             onClickArchive = {},

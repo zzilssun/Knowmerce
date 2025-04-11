@@ -8,7 +8,7 @@ import com.sample.knowmerce.core.data.repository.KnowMerceDatabaseRepository
 import com.sample.knowmerce.core.data.room.entity.ArchiveEntity
 import com.sample.knowmerce.core.ui.paging.getEmptyPager
 import com.sample.knowmerce.core.ui.paging.getPager
-import com.sample.knowmerce.feature.main.card.models.SearchViewData
+import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
 import com.sample.knowmerce.feature.main.search.paging.SearchImageAndVideoPagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -72,12 +72,12 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    internal fun insertArchive(item: SearchViewData) {
+    internal fun insertArchive(item: KakoSearchViewData) {
         viewModelScope.launch {
             runCatching {
                 knowMerceDatabase.insertArchive(
                     when (item) {
-                        is SearchViewData.Image -> {
+                        is KakoSearchViewData.Image -> {
                             ArchiveEntity(
                                 contentHashCode = item.hashCode(),
                                 type = "image",
@@ -85,7 +85,7 @@ class SearchViewModel @Inject constructor(
                             )
                         }
 
-                        is SearchViewData.Video -> {
+                        is KakoSearchViewData.Video -> {
                             ArchiveEntity(
                                 contentHashCode = item.hashCode(),
                                 type = "video",

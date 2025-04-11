@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ import com.sample.knowmerce.core.ui.extensions.rememberDevicePosture
 import com.sample.knowmerce.core.ui.extensions.rippleClickable
 import com.sample.knowmerce.core.ui.paging.mockingLazyPagingItems
 import com.sample.knowmerce.core.ui.scaffold.KnowMerceScaffold
+import com.sample.knowmerce.feature.main.R
 import com.sample.knowmerce.feature.main.card.KakaoImageCardView
 import com.sample.knowmerce.feature.main.card.KakaoVideoCardView
 import com.sample.knowmerce.feature.main.card.models.KakoSearchViewData
@@ -80,7 +82,7 @@ internal fun ArchiveContentView(
                     },
                     title = {
                         Text(
-                            text = "컨텐츠 아카이빙",
+                            text = stringResource(R.string.archive_screen_title),
                             style = MaterialTheme.typography.titleLarge,
                             color = MaterialTheme.colorScheme.primary,
                         )
@@ -108,7 +110,7 @@ internal fun ArchiveContentView(
                     Text(
                         modifier = Modifier
                             .align(Alignment.Center),
-                        text = "검색 결과가 없습니다.",
+                        text = stringResource(R.string.archive_screen_empty_result),
                     )
                 } else {
                     // 최초 로드 이후 데이터가 있는 경우

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 검색 화면 -->
+    <string name="search_screen_hint">"검색어를 입력해주세요."</string>
+    <string name="search_screen_empty_result">"검색 결과가 없습니다."</string>
+    <string name="search_screen_archived_content">"아카이빙에 저장되었습니다."</string>
+
+    <!-- 아카이빙 화면 -->
+    <string name="archive_screen_title">"컨텐츠 아카이빙"</string>
+    <string name="archive_screen_empty_result">"검색 결과가 없습니다."</string>
+</resources>
